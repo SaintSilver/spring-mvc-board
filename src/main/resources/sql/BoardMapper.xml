@@ -14,5 +14,56 @@
 			bno > 0
 	]]>
 	</select>
+	
+	<insert id="insert">
+		INSERT INTO 
+			tbl_board 
+			(title, content, writer)
+		VALUE 
+			(#{title}, 
+			#{content}, 
+			#{writer})
+	</insert>
+	
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="Long">
+			SELECT MAX(bno)+1 FROM tbl_board
+		</selectKey>
+		INSERT INTO 
+			tbl_board 
+			(title, content, writer)
+		VALUE 
+			(#{title}, 
+			#{content}, 
+			#{writer})
+	</insert>
+	
+	<select id="read" resultType="com.kutar.model.BoardVO">
+		SELECT 
+			*
+		FROM
+			tbl_board
+		WHERE
+			bno = #{bno}
+	</select>
+	
+	<update id="update">
+		UPDATE 
+			tbl_board
+		SET
+			title = #{title},
+			content = #{content},
+			writer = #{writer},
+			updateDate = NOW()
+		WHERE
+			bno = #{bno}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM
+			tbl_board
+		WHERE 
+			bno = #{bno}
+	</delete>
 
 </mapper>

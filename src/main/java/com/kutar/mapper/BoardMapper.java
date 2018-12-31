@@ -6,5 +6,10 @@ import com.kutar.model.BoardVO;
 
 public interface BoardMapper {
 
-	public List<BoardVO> getList();
+	List<BoardVO> getList();
+	void insert(BoardVO board);
+	void insertSelectKey(BoardVO board);
+	BoardVO read(Long bno);
+	int delete(Long bno);
+	int update(BoardVO board);
 }
