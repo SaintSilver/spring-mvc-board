@@ -27,6 +27,22 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
+							<div class="pull-left">
+								<div class="col-xs-12">
+									<form id="searchForm" action="/board/list" method="get">
+										<select name="type">
+											<option value="TC" <c:out value="${page.cri.type=='TC'?'selected':''}"/>>제목+내용</option>
+											<option value="T" <c:out value="${page.cri.type=='T'?'selected':''}"/>>제목</option>
+											<option value="C" <c:out value="${page.cri.type=='C'?'selected':''}"/>>내용</option>
+											<option value="W" <c:out value="${page.cri.type=='W'?'selected':''}"/>>작성자</option>
+										</select>
+										<input type="text" name="keyword" value="<c:out value="${page.cri.keyword}"/>" />
+										<input type="hidden" name="pageNum" value="<c:out value='${page.cri.pageNum}'/>">
+										<button class="btn btn-default" id="searchBtn">검색</button>
+									</form>
+								</div>
+							</div>
+							<!-- /.search -->
 							<a href="/board/register">
 								<button type="button" id="regBtn" class="btn btn-primary pull-right">글쓰기</button>
 							</a>
@@ -59,7 +75,8 @@
 								</tbody>
 							</table>
 							<!-- /.table-responsive -->
-							<div class="pull-right">
+							
+							<div class="text-center">
 								<ul class="pagination">
 									<c:if test="${page.prev}">
 										<li class="paginate_button previous"><a href="<c:out value='${page.startPage-1}'/>">Prev</a></li>
@@ -74,11 +91,14 @@
 									</c:if>
 								</ul>
 							</div>
+							<!-- /. paging -->
+							
 							<form action="/board/list" method="get" id="actionForm">
 								<input type="hidden" name="pageNum" value="<c:out value='${page.cri.pageNum}'/>">
+								<input type="hidden" name="keyword" value="<c:out value="${page.cri.keyword}"/>" />
+								<input type="hidden" name="type" value="<c:out value='${page.cri.type}'/>">
 								<%-- <input type="hidden" name="amount" value="<c:out value='${page.cri.amount}'/>"> --%>
 							</form>
-							<!-- /. paging -->
 						</div>
 						<!-- /.panel-body -->
 					</div>
