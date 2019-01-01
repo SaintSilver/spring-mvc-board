@@ -1,0 +1,7 @@
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="/resources/js/sb-admin-2.js"></script>
+	
+	<script src="/resources/js/board.js"></script>
