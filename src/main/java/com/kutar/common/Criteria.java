@@ -1,18 +1,17 @@
 package com.kutar.common;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @ToString
-@Slf4j
 public class Criteria {
 	
 	private int pageNum;
 	private int amount;
 	private int rowStart;
+	
+	private String type, keyword;
 	
 	public Criteria() {
 		this(1);
@@ -36,6 +35,18 @@ public class Criteria {
 
 	public void setRowStart(int rowStart) {
 		this.rowStart = rowStart;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
+	public String[] getTypeArr() {
+		return type == null ? new String[] {} : type.split("");
 	}
 	
 }
