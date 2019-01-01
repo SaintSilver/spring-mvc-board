@@ -53,11 +53,11 @@
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th>번호</th>
-										<th>제목</th>
-										<th>이름</th>
-										<th>작성일</th>
-										<th>최근수정일</th>
+										<th class="col-md-1">번호</th>
+										<th class="col-md-7">제목</th>
+										<th class="col-md-2">이름</th>
+										<th class="col-md-1">작성일</th>
+										<th class="col-md-1">수정일</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -97,7 +97,6 @@
 								<input type="hidden" name="pageNum" value="<c:out value='${page.cri.pageNum}'/>">
 								<input type="hidden" name="keyword" value="<c:out value="${page.cri.keyword}"/>" />
 								<input type="hidden" name="type" value="<c:out value='${page.cri.type}'/>">
-								<%-- <input type="hidden" name="amount" value="<c:out value='${page.cri.amount}'/>"> --%>
 							</form>
 						</div>
 						<!-- /.panel-body -->

@@ -28,6 +28,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 						<p>#<c:out value="${board.bno}"/>번 글 수정</p>
+						<p>최종 수정: <fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${board.updateDate}"/></p>
 							<form role="form" method="post" id="modifyForm">
 							
 								<div class="form-group">
@@ -46,10 +47,9 @@
 								</div>
 								
 								<input type="hidden" name="bno" value="${board.bno}">
-								<input type="hidden" name="regDate" value="<fmt:formatDate pattern="yyyy/MM/dd" value="${board.regDate}"/>">
-								<input type="hidden" name="updateDate" value="<fmt:formatDate pattern="yyyy/MM/dd" value="${board.updateDate}"/>">
 								<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
-								<%-- <input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>"> --%>
+								<input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>">
+								<input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
 								<div class="row">
 									<button type="submit" class="btn btn-primary" formaction="/board/modify">수정</button>
 									<button type="submit" class="btn btn-danger" formaction="/board/remove">삭제</button>
