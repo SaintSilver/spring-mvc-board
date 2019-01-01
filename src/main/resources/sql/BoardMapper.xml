@@ -15,11 +15,7 @@
 	]]>
 	</select>
 	
-	<select id="getListWithPaging" resultType="com.kutar.model.BoardVO" parameterType="com.kutar.common.Criteria">
-		SELECT 
-			*
-		FROM
-			tbl_board
+	<sql id="criteria">
 		<trim prefix="WHERE" prefixOverrides="OR">
 		<foreach item="type" collection="typeArr">
 		<choose>
@@ -35,8 +31,24 @@
 		</choose>
 		</foreach>
 		</trim>
+	</sql>
+	
+	<select id="getListWithPaging" resultType="com.kutar.model.BoardVO" parameterType="com.kutar.common.Criteria">
+		SELECT 
+			*
+		FROM
+			tbl_board
+		<include refid="criteria" />
 		ORDER BY bno DESC
 		LIMIT #{rowStart}, #{amount}
+	</select>
+	
+	<select id="getTotalCount" resultType="int" parameterType="com.kutar.common.Criteria">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			tbl_board
+		<include refid="criteria" />
 	</select>
 	
 	<insert id="insert">

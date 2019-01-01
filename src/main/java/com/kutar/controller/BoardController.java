@@ -29,7 +29,7 @@ public class BoardController {
 	public void list(Criteria cri, Model model) {
 		log.info("페이지 : {}", cri);
 		model.addAttribute("list",service.getList(cri));
-		model.addAttribute("page", new PageDTO(cri, service.getTotal()));
+		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
 	}
 	
 	@PostMapping("/register")

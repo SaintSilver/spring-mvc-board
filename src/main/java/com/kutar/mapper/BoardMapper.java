@@ -12,8 +12,7 @@ public interface BoardMapper {
 	List<BoardVO> getList();
 	List<BoardVO> getListWithPaging(Criteria cri);
 	
-	@Select("SELECT COUNT(*) FROM tbl_board WHERE bno > 0")
-	int getTotalCount();
+	int getTotalCount(Criteria cri);
 	
 	void insert(BoardVO board);
 	void insertSelectKey(BoardVO board);
