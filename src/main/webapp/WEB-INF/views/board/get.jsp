@@ -44,8 +44,13 @@
 							<div class="container-fluid">
 								<p><c:out value="${board.content}"/></p>
 								<div class="row text-right">
-									<a href="/board/modify?bno=<c:out value="${board.bno}"/>"><button type="button" class="btn btn-primary">수정</button></a>
-									<a href="/board/list"><button type="button" class="btn btn-success">목록</button></a>
+								<form method="get">
+									<input type="hidden" name="bno" value="<c:out value='${board.bno}'/>">
+									<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
+									<%-- <input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>"> --%>
+									<button type="submit" class="btn btn-primary" formaction="/board/modify">수정</button>
+									<button type="submit" class="btn btn-success" formaction="/board/list">목록</button>
+								</form>
 								</div>
 							</div>
 						</div>

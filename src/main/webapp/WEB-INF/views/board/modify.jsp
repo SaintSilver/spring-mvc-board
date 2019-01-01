@@ -48,11 +48,12 @@
 								<input type="hidden" name="bno" value="${board.bno}">
 								<input type="hidden" name="regDate" value="<fmt:formatDate pattern="yyyy/MM/dd" value="${board.regDate}"/>">
 								<input type="hidden" name="updateDate" value="<fmt:formatDate pattern="yyyy/MM/dd" value="${board.updateDate}"/>">
-								
+								<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
+								<%-- <input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>"> --%>
 								<div class="row">
 									<button type="submit" class="btn btn-primary" formaction="/board/modify">수정</button>
 									<button type="submit" class="btn btn-danger" formaction="/board/remove">삭제</button>
-									<a href="/list"><button type="button" class="btn btn-success">취소</button></a>
+									<a href="/board/list"><button type="button" class="btn btn-success">취소</button></a>
 								</div>
 								
 							</form>
