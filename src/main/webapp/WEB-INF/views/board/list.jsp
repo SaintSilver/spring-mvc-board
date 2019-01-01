@@ -48,7 +48,9 @@
 									<c:forEach items="${list}" var="board">
 										<tr>
 											<td><c:out value="${board.bno}" /></td>
-											<td><c:out value="${board.title}" /></td>
+											<td>
+												<a class="move" href="<c:out value='${board.bno}'/>"><c:out value="${board.title}" /></a>
+											</td>
 											<td><c:out value="${board.writer}" /></td>
 											<td><fmt:formatDate pattern="MM-dd" value="${board.regDate}" /></td>
 											<td><fmt:formatDate pattern="MM-dd" value="${board.updateDate}" /></td>
@@ -59,12 +61,24 @@
 							<!-- /.table-responsive -->
 							<div class="pull-right">
 								<ul class="pagination">
-									<li class="paginate_button previous"><a href="#">Prev</a></li>
-									<li><a href='#'>1</a></li>
-									<li class="paginate_button next"><a href="#">Next</a></li>
+									<c:if test="${page.prev}">
+										<li class="paginate_button previous"><a href="<c:out value='${page.startPage-1}'/>">Prev</a></li>
+									</c:if>
+									<c:forEach var="num" begin="${page.startPage}" end="${page.endPage}">
+										<li class='paginate_button ${page.cri.pageNum == num ? "active":"" }'>
+											<a href='<c:out value="${num}"/>'><c:out value="${num}"/></a>
+										</li>
+									</c:forEach>
+									<c:if test="${page.next}">
+										<li class="paginate_button next"><a href="<c:out value='${page.endPage+1}'/>">Next</a></li>
+									</c:if>
 								</ul>
 							</div>
-							<!-- paging -->
+							<form action="/board/list" method="get" id="actionForm">
+								<input type="hidden" name="pageNum" value="<c:out value='${page.cri.pageNum}'/>">
+								<%-- <input type="hidden" name="amount" value="<c:out value='${page.cri.amount}'/>"> --%>
+							</form>
+							<!-- /. paging -->
 						</div>
 						<!-- /.panel-body -->
 					</div>
