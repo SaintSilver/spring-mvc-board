@@ -1,5 +1,10 @@
 $(function(){
 	
+	$('form').submit(function(){
+		$(this).find(':input').filter(function(){return !this.value; }).attr("disabled", "disabled");
+		return true;
+	})
+	
 	var actionForm = $('#actionForm');
 	
 	//페이징

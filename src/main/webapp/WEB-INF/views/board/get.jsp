@@ -48,6 +48,8 @@
 									<input type="hidden" name="bno" value="<c:out value='${board.bno}'/>">
 									<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
 									<%-- <input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>"> --%>
+									<input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>">
+									<input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
 									<button type="submit" class="btn btn-primary" formaction="/board/modify">수정</button>
 									<button type="submit" class="btn btn-success" formaction="/board/list">목록</button>
 								</form>
