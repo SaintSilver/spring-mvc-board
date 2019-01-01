@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.kutar.common.Criteria;
 import com.kutar.model.BoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -26,6 +27,16 @@ public class BoardServiceTest {
 		board.setWriter("tester");
 		service.register(board);
 		log.info(board);
+	}
+	
+	@Test
+	public void getListWithPaging() {
+		service.getList(new Criteria(3)).forEach(board->log.info(board));
+	}
+	
+	@Test
+	public void getTotal() {
+		service.getTotal();
 	}
 	
 	@Test

@@ -2,6 +2,7 @@ package com.kutar.service;
 
 import java.util.List;
 
+import com.kutar.common.Criteria;
 import com.kutar.model.BoardVO;
 
 public interface BoardService {
@@ -11,5 +12,6 @@ public interface BoardService {
 	boolean modify(BoardVO board);
 	boolean remove(Long bno);
 	
-	List<BoardVO> getList();
+	List<BoardVO> getList(Criteria cri);
+	int getTotal();
 }

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kutar.common.Criteria;
 import com.kutar.model.BoardVO;
+import com.kutar.model.PageDTO;
 import com.kutar.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +25,10 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
-		model.addAttribute("list",service.getList());
+	public void list(Criteria cri, Model model) {
+		log.info("페이지 : {}", cri);
+		model.addAttribute("list",service.getList(cri));
+		model.addAttribute("page", new PageDTO(cri, service.getTotal()));
 	}
 	
 	@PostMapping("/register")

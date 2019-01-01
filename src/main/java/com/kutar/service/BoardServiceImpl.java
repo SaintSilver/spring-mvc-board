@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.kutar.common.Criteria;
 import com.kutar.mapper.BoardMapper;
 import com.kutar.model.BoardVO;
 
@@ -41,8 +42,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> getList() {
-		return mapper.getList();
+	public List<BoardVO> getList(Criteria cri) {
+		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal() {
+		return mapper.getTotalCount();
 	}
 
 }

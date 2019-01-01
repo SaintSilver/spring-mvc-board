@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.kutar.common.Criteria;
 import com.kutar.model.BoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -21,6 +22,16 @@ public class BoardMapperTest {
 	@Test
 	public void getList() {
 		mapper.getList().forEach(board->log.info(board));
+	}
+	
+	@Test
+	public void getListWithPaging() {
+		mapper.getListWithPaging(new Criteria(1)).forEach(board->log.info(board));
+	}
+	
+	@Test
+	public void getTotalCount() {
+		mapper.getTotalCount();
 	}
 	
 	@Test
