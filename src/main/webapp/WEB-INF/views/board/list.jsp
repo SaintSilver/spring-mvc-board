@@ -27,7 +27,9 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<button type="button" id="regBtn" class="btn btn-primary pull-right">글쓰기</button>
+							<a href="/board/register">
+								<button type="button" id="regBtn" class="btn btn-primary pull-right">글쓰기</button>
+							</a>
 							<div class="clearfix"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -71,6 +73,23 @@
 				<!-- /.col-lg-12 -->
 			</div>
 			<!-- /.row -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModallabel">알림</h4>
+						</div>
+						<div class="modal-body">처리가 완료되었습니다.</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success" data-dismiss="modal">닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal -->
 		</div>
 		<!-- /#page-wrapper -->
 
@@ -78,7 +97,24 @@
 	<!-- /#wrapper -->
 
 	<%@ include file="../includes/footer.jspf"%>
+	<script>
+		$(function() {
+			var result = '<c:out value="${result}" />';
 
+			checkModal(result);
+			history.replaceState({}, null, null);
+
+			function checkModal(result) {
+				if (result === '' || history.state) {
+					return;
+				}
+				if (parseInt(result) > 0) {
+					$('.modal-body').html("게시글 " + parseInt(result) + "번이 등록되었습니다.");
+				}
+				$('#myModal').modal('show');
+			}
+		});
+	</script>
 </body>
 
 </html>
