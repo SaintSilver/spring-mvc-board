@@ -35,8 +35,8 @@ public class BoardMapperTest {
 	@Test
 	public void getTotalCount() {
 		Criteria cri = new Criteria();
-		cri.setKeyword("test");
-		cri.setType("TC");
+		//cri.setKeyword("test");
+		//cri.setType("TC");
 		mapper.getTotalCount(cri);
 	}
 	

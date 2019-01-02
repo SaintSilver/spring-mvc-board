@@ -439,3 +439,16 @@ table.dataTable thead .sorting:after {
 .navbar-right{
 	float: right !important;
 }
+
+.form-inline{
+	display: inline !important;
+}
+#searchForm > select,
+#searchForm > input,
+#searchForm > button{
+	height: 34px;
+	box-sizing: border-box;
+ 	-moz-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	vertical-align: middle;
+}

@@ -36,7 +36,7 @@ public class BoardServiceTest {
 	
 	@Test
 	public void getTotal() {
-		service.getTotal(new Criteria(3));
+		service.getTotal(new Criteria());
 	}
 	
 	@Test
