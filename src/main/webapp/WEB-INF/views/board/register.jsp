@@ -7,6 +7,7 @@
 
 <head>
 <%@ include file="../includes/head.jspf"%>
+<script src="/resources/vendor/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 								</div>
 								<div class="form-group">
 									<label>내용</label>
-									<textarea class="form-control" rows="15" name="content"></textarea>
+									<textarea class="form-control" rows="15" name="content" id="content"></textarea>
 								</div>
 								<div class="form-group">
 									<label>이름</label>
@@ -58,7 +59,16 @@
 	<!-- /#wrapper -->
 
 	<%@ include file="../includes/footer.jspf"%>
-
+	<script>
+		CKEDITOR.replace('content',{
+			language: 'ko'
+		});
+		$('form').on('submit',function(){
+			for (instance in CKEDITOR.instances) {
+	            CKEDITOR.instances[instance].updateElement();
+	    	}
+		})
+	</script>
 </body>
 
 </html>

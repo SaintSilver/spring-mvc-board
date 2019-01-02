@@ -42,7 +42,7 @@
 							<h3><c:out value="${board.title}"/></h3>
 							<hr>
 							<div class="container-fluid">
-								<p><c:out value="${board.content}"/></p>
+								<p><c:out value="${board.content}" escapeXml="false"/></p>
 								<div class="row text-right">
 								<form class="form-inline" method="get" action="/board/modify">
 									<input type="hidden" name="bno" value="<c:out value='${board.bno}'/>">
