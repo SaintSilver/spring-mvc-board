@@ -56,6 +56,9 @@
 									<input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>">
 									<input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
 									<button type="submit" class="btn btn-success">목록</button>
+									<a href="/board/list">
+										<button type="button" class="btn btn-warning">최근 글</button>
+									</a>
 								</form>
 								</div>
 							</div>
