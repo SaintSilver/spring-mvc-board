@@ -4,21 +4,24 @@
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- db.properties.xml -->
+	<util:properties id="config" location="classpath:/conf/db.properties.xml" />
+
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-
-		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:mysql://127.0.0.1:3306/board?autoReconnect=true&amp;useSSL=false&amp;serverTimezone=UTC&amp;allowMultiQueries=true" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+	    <property name="driverClassName" value="#{config['db.driverClassName']}" />
+	    <property name="jdbcUrl" value="#{config['db.jdbcUrl']}" />
+	    <property name="username" value="#{config['db.username']}" />
+	    <property name="password" value="#{config['db.password']}" />
 	</bean>
 
 	<!-- HikariCP Configuration -->
