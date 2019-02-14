@@ -60,14 +60,14 @@
 
 	<%@ include file="../includes/footer.jspf"%>
 	<script>
-		CKEDITOR.replace('content',{
+/* 		CKEDITOR.replace('content',{
 			language: 'ko'
 		});
 		$('form').on('submit',function(){
 			for (instance in CKEDITOR.instances) {
 	            CKEDITOR.instances[instance].updateElement();
 	    	}
-		})
+		}) */
 	</script>
 </body>
 
