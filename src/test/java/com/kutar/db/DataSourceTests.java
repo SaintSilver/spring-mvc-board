@@ -44,7 +44,7 @@ public class DataSourceTests {
 		Connection con = session.getConnection();){
 			log.info(session.toString());
 			log.info(con.toString());
-			sqlSession.selectList("findAllUsers");
+			sqlSession.selectList("getList");
 		}catch(Exception e) {
 			fail(e.getMessage());
 		}
