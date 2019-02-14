@@ -4,5 +4,5 @@
     <entry key="db.driverClassName">net.sf.log4jdbc.sql.jdbcapi.DriverSpy</entry>
     <entry key="db.jdbcUrl">jdbc:log4jdbc:mysql://127.0.0.1:3306/board?autoReconnect=true&amp;useSSL=false&amp;serverTimezone=UTC&amp;allowMultiQueries=true</entry>
     <entry key="db.username">root</entry>
-    <entry key="db.password">root</entry>
+    <entry key="db.password">ENC(EgtGdVSCmivB5SSC3wiOD7fWDGEOQhsn)</entry>
 </properties>

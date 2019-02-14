@@ -16,12 +16,12 @@
 	<!-- db.properties.xml -->
 	<util:properties id="config" location="classpath:/conf/db.properties.xml" />
 
-
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 	    <property name="driverClassName" value="#{config['db.driverClassName']}" />
 	    <property name="jdbcUrl" value="#{config['db.jdbcUrl']}" />
+	    <!-- Jasypt 쓰려면 ${} 방식으로 읽어야 함. -->
 	    <property name="username" value="#{config['db.username']}" />
-	    <property name="password" value="#{config['db.password']}" />
+	    <property name="password" value="${db.password}" />
 	</bean>
 
 	<!-- HikariCP Configuration -->
@@ -34,6 +34,10 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:/sql/*.xml" />      
 	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+    </bean>  
 
 	<!-- MyBatis Mapper 설정 -->
 	<mybatis-spring:scan base-package="com.kutar.mapper" />
@@ -46,4 +50,23 @@
 	</bean>
 	<!-- 트랜잭션 관련 어노테이션을 자동인식 -->
 	<tx:annotation-driven />
+	
+	<!-- Jasypt 설정 -->
+	<bean id="encryptorConfig" class="org.jasypt.encryption.pbe.config.EnvironmentPBEConfig">  
+	       <property name="algorithm" value="PBEWithMD5AndDES" />  
+	       <property name="password" value="kutar" />
+	</bean>  
+	
+	<bean id="encryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">  
+	       <property name="config" ref="encryptorConfig" />  
+	</bean>  
+	
+	<bean class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg ref="encryptor" />
+		    <property name="locations">
+		        <list>
+		            <value>classpath:/conf/db.properties.xml</value>
+		        </list>
+		 </property>
+	</bean>
 </beans>
