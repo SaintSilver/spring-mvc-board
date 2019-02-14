@@ -12,13 +12,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/root-context.xml",
 		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
-@Log4j
+@Slf4j
 public class BoardControllerTest {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class BoardControllerTest {
 	@Test
 	public void getList() throws Exception {
 		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/board/list").param("pageNum", "4")).andReturn().getModelAndView().getModelMap());
+				mockMvc.perform(MockMvcRequestBuilders.get("/board/list").param("pageNum", "4")).andReturn().getModelAndView().getModelMap().toString());
 	}
 
 	@Test
@@ -48,7 +48,7 @@ public class BoardControllerTest {
 	@Test
 	public void get() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/get").param("bno", "3")).andReturn()
-				.getModelAndView().getModelMap());
+				.getModelAndView().getModelMap().toString());
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class BoardControllerTest {
 	@Test
 	public void remove() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/remove").param("bno", "1555")).andReturn()
-				.getModelAndView().getModelMap());
+				.getModelAndView().getModelMap().toString());
 	}
 
 }

@@ -9,11 +9,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.kutar.common.Criteria;
 import com.kutar.model.BoardVO;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-@Log4j
+@Slf4j
 public class BoardMapperTest {
 	
 	@Autowired
@@ -21,7 +21,7 @@ public class BoardMapperTest {
 	
 	@Test
 	public void getList() {
-		mapper.getList().forEach(board->log.info(board));
+		mapper.getList().forEach(board->log.info(board.toString()));
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class BoardMapperTest {
 		Criteria cri = new Criteria();
 		cri.setKeyword("test");
 		cri.setType("T");
-		mapper.getListWithPaging(cri).forEach(board->log.info(board));
+		mapper.getListWithPaging(cri).forEach(board->log.info(board.toString()));
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class BoardMapperTest {
 		board.setContent("test 내용");
 		board.setWriter("tester");
 		mapper.insert(board);
-		log.info(board);
+		log.info(board.toString());
 	}
 	
 	@Test
@@ -57,12 +57,12 @@ public class BoardMapperTest {
 		board.setContent("test 내용");
 		board.setWriter("tester");
 		mapper.insertSelectKey(board);
-		log.info(board);
+		log.info(board.toString());
 	}
 	
 	@Test
 	public void read() {
-		log.info(mapper.read(1L));
+		log.info(mapper.read(1L).toString());
 	}
 	
 	@Test
@@ -72,11 +72,11 @@ public class BoardMapperTest {
 		board.setTitle("test 수정 제목");
 		board.setContent("test 수정 내용");
 		board.setWriter("tester");
-		log.info(mapper.update(board));
+		mapper.update(board);
 	}
 	
 	@Test
 	public void delete() {
-		log.info(mapper.delete(2L));
+		mapper.delete(2L);
 	}
 }

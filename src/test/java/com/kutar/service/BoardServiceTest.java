@@ -9,11 +9,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.kutar.common.Criteria;
 import com.kutar.model.BoardVO;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-@Log4j
+@Slf4j
 public class BoardServiceTest {
 	
 	@Autowired
@@ -26,12 +26,12 @@ public class BoardServiceTest {
 		board.setContent("test 내용");
 		board.setWriter("tester");
 		service.register(board);
-		log.info(board);
+		log.info(board.toString());
 	}
 	
 	@Test
 	public void getListWithPaging() {
-		service.getList(new Criteria(3)).forEach(board->log.info(board));
+		service.getList(new Criteria(3)).forEach(board->log.info(board.toString()));
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class BoardServiceTest {
 	
 	@Test
 	public void read() {
-		log.info(service.get(1L));
+		log.info(service.get(1L).toString());
 	}
 	
 	@Test
@@ -51,11 +51,11 @@ public class BoardServiceTest {
 		board.setTitle("test 수정 제목");
 		board.setContent("test 수정 내용");
 		board.setWriter("tester");
-		log.info(service.modify(board));
+		service.modify(board);
 	}
 	
 	@Test
 	public void delete() {
-		log.info(service.remove(11L));
+		service.remove(11L);
 	}
 }

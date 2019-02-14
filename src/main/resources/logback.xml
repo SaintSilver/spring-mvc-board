@@ -1,48 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<!-- Console Log Setting -->
-	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-	    <!-- 패턴은 자유롭게 사용 실무에 적용한 것을 공유함 -->
-	    <encoder>
-	        <pattern>[%d{yyyy/MM/dd HH:mm:ss}] %highlight([%-5level])| %cyan(%-25.25logger{0}) | %msg%n</pattern>
-	        <!-- <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [%logger] - %msg%n</pattern> -->
-	    </encoder>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<encoder>
+				<pattern>[%d{yyyy/MM/dd HH:mm:ss}] %highlight(%-5level)| %cyan(%-25.25logger{0}) | %msg%n</pattern>
+			</encoder>
+		</layout>
 	</appender>
-	
-	<!-- log SQL with timing information, post execution -->
-	<Logger name="jdbc.connection" level="ERROR" additivity="false">
-		<appender-ref ref="console" />
-	</Logger>
-    <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
-        <appender-ref ref="console" />
-    </Logger>
-    
-    <Logger name="resultsettable" level="ERROR" additivity="false">
-        <appender-ref ref="console" />
-    </Logger>
-    
-    <Logger name="java.sql" level="ERROR" additivity="false">
-        <appender-ref ref="console" />
-    </Logger>
-    
-    <Logger name="jdbc.resultset" level="ERROR" additivity="false">
-        <appender-ref ref="console" />
-    </Logger>
-    
-    <Logger name="jdbc.audit" level="ERROR" additivity="false">
-        <appender-ref ref="console" />
-    </Logger>
-    
-    <Logger name="jdbc.sqlonly" level="ERROR" additivity="false">
-        <appender-ref ref="console" />
-    </Logger>
-    
-    <Logger name="org.springframework" level="INFO" additivity="false">
-        <appender-ref ref="console" />
-    </Logger>
-    
-	<!--로그 레벨을 확인하여 출력-->
+
+<!-- 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>E:/logs/APPNAME/debug.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n</pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>E:/logs/APPNAME/old/debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>15</maxHistory>
+		</rollingPolicy>
+	</appender> -->
+
+	<!-- mybatis query log setting -->
+	<logger name="jdbc" level="OFF" />
+	<logger name="jdbc.sqlonly" level="OFF" />
+	<logger name="jdbc.sqltiming" level="DEBUG" />
+	<logger name="jdbc.audit" level="OFF" />
+	<logger name="jdbc.resultset" level="OFF" />
+	<logger name="jdbc.resultsettable" level="OFF" />
+	<logger name="jdbc.connection" level="OFF" />
+
 	<root level="INFO">
-	    <appender-ref ref="console" />
+		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>
