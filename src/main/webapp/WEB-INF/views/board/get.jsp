@@ -86,6 +86,11 @@
 									</div>
 								</li>
 							</ul>
+							<div id="addReplyContainer">
+								<label><small>Name &nbsp;</small></label><input type="text" name="replyer">
+								<textarea class="form-control" rows="3" name="reply"></textarea>
+								<button id="addReplyBtn" class="btn btn-primary pull-right" style="margin-top:10px;">댓글쓰기</button>				
+							</div>
 						</div>
 					</div>
 				</div>
@@ -130,6 +135,26 @@
 				replyUL.html(str);
 			});				
 		}
+		
+		//댓글추가
+		var addReplyCon = $('#addReplyContainer');
+		var inputReply = addReplyCon.find('textarea[name="reply"]');
+		var inputReplyer = addReplyCon.find('input[name="replyer"]');
+		
+		$('#addReplyBtn').on('click',function(){
+			console.log("asdfasdf : " +inputReply.val());
+			var reply = {
+					reply: inputReply.val(),
+					replyer: inputReplyer.val(),
+					bno: bnoValue
+			};
+			replyService.add(reply,function(result){
+				alert(result);
+				inputReply.val('');
+				inputReplyer.val('');
+				showList(1);
+			})
+		})
 	
 	})
 
