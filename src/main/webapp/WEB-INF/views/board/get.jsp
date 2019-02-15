@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,38 +28,50 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div>
-								<em>#<c:out value="${board.bno}" /></em>
-								<b><c:out value="${board.writer}" /></b>
+								<em>#<c:out value="${board.bno}" /></em> <b><c:out
+										value="${board.writer}" /></b>
 							</div>
 							<div>
-							<small>
-								<fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${board.regDate}" />
-								<c:if test="${board.regDate != board.updateDate}">
-									 / <u>수정됨 <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${board.updateDate}" /></u>
-								</c:if>
-							</small>
+								<small> <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
+										value="${board.regDate}" /> <c:if
+										test="${board.regDate != board.updateDate}">
+									 / <u>수정됨 <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
+												value="${board.updateDate}" /></u>
+									</c:if>
+								</small>
 							</div>
-							<h3><c:out value="${board.title}"/></h3>
+							<h3>
+								<c:out value="${board.title}" />
+							</h3>
 							<hr>
 							<div class="container-fluid">
-								<p><c:out value="${board.content}" escapeXml="false"/></p>
+								<p>
+									<c:out value="${board.content}" escapeXml="false" />
+								</p>
 								<div class="row text-right">
-								<form class="form-inline" method="get" action="/board/modify">
-									<input type="hidden" name="bno" value="<c:out value='${board.bno}'/>">
-									<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
-									<input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>">
-									<input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
-									<button type="submit" class="btn btn-primary">수정</button>
-								</form>
-								<form class="form-inline" method="get" action="/board/list">
-									<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
-									<input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>">
-									<input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
-									<button type="submit" class="btn btn-success">목록</button>
-									<a href="/board/list">
-										<button type="button" class="btn btn-warning">최근 글</button>
-									</a>
-								</form>
+									<form class="form-inline" method="get" action="/board/modify">
+										<input type="hidden" name="bno"
+											value="<c:out value='${board.bno}'/>"> <input
+											type="hidden" name="pageNum"
+											value="<c:out value='${cri.pageNum}'/>"> <input
+											type="hidden" name="keyword"
+											value="<c:out value='${cri.keyword}'/>"> <input
+											type="hidden" name="type"
+											value="<c:out value='${cri.type}'/>">
+										<button type="submit" class="btn btn-primary">수정</button>
+									</form>
+									<form class="form-inline" method="get" action="/board/list">
+										<input type="hidden" name="pageNum"
+											value="<c:out value='${cri.pageNum}'/>"> <input
+											type="hidden" name="keyword"
+											value="<c:out value='${cri.keyword}'/>"> <input
+											type="hidden" name="type"
+											value="<c:out value='${cri.type}'/>">
+										<button type="submit" class="btn btn-success">목록</button>
+										<a href="/board/list">
+											<button type="button" class="btn btn-warning">최근 글</button>
+										</a>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -78,6 +90,25 @@
 	<!-- /#wrapper -->
 
 	<%@ include file="../includes/footer.jspf"%>
+	<script src="/resources/js/reply.js"></script>
+	<script>
+		var bnoValue = '<c:out value="${board.bno}"/>';
+
+		//댓글목록
+		replyService.getList({
+			bno : bnoValue,
+			page : 1
+		}, function(list) {
+			var len = list.length || 0;
+			for (var i = 0; i < len; i++) {
+				console.log(list[i]);
+			}
+		})
+		
+		replyService.get(13, function(data){
+			console.log(data)
+		})
+	</script>
 
 </body>
 
