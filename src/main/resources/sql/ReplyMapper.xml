@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kutar.mapper.ReplyMapper">
+
+	<insert id="insert">
+		INSERT INTO tbl_reply
+			(bno,reply,replyer)
+		VALUE
+			(#{bno}, #{reply}, #{replyer})
+	</insert>
+	
+	<select id="read" resultType="com.kutar.model.ReplyVO">
+		SELECT * FROM tbl_reply WHERE rno = #{rno}
+	</select>
+	
+	<update id="update">
+		UPDATE tbl_reply 
+		SET 
+			reply = #{reply},
+			updateDate = NOW()
+		WHERE 
+			rno = #{rno}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tbl_reply WHERE rno = #{rno}
+	</delete>
+	
+	<select id="getListWithPaging" resultType="com.kutar.model.ReplyVO">
+		SELECT * FROM tbl_reply
+		WHERE bno = #{bno}
+		ORDER BY rno ASC
+	</select>
+</mapper>
