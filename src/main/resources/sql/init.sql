@@ -36,5 +36,5 @@ CREATE TABLE `board`.`tbl_reply` (
   CONSTRAINT `fk_reply_board`
     FOREIGN KEY (`bno`)
     REFERENCES `board`.`tbl_board` (`bno`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);

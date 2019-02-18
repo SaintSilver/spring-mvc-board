@@ -101,7 +101,7 @@ var replyService = (function() {
 			var mm = dateObj.getMonth()+1;
 			var dd = dateObj.getDate();
 			
-			return [yy,'/',(mm>9?'':'0')+mm,'/',(ss>9?'':'0')+ss].join('');
+			return [yy,'/',(mm>9?'':'0')+mm,'/',(dd>9?'':'0')+dd].join('');
 		}
 	}
 
