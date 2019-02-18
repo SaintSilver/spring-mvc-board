@@ -98,6 +98,38 @@
 			<!-- /.row -->
 		</div>
 		<!-- /#page-wrapper -->
+		
+		<!-- modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">댓글 수정</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>댓글</label>
+							<textarea class="form-control" name="reply"></textarea>
+						</div>
+						<div class="form-group">
+							<label>작성자</label>
+							<input class="form-control" name="replyer" readonly="readonly">
+						</div>
+						<div class="form-group">
+							<label>날짜</label>
+							<input class="form-control" name="replyDate" value="" readonly="readonly">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="modalModBtn" type="button" class="btn btn-primary">수정</button>
+						<button id="modalRemoveBtn" type="button" class="btn btn-danger">삭제</button>
+						<button id="modalCloseBtn" type="button" class="btn btn-default">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal -->
 
 	</div>
 	<!-- /#wrapper -->
@@ -108,6 +140,47 @@
 	$(function(){
 		var bnoValue = '<c:out value="${board.bno}"/>';
 		var replyUL = $('.chat');
+		
+		//modal
+		var modal = $('.modal');
+		var modalInputReply = modal.find('input[name="reply"]');
+		var modalInputReplyer = modal.find('input[name="replyer"]');
+		var modalInputReplyDate = modal.find('input[name="replyDate"]');
+		
+		var modalModBtn = $('#modalModBtn');
+		var modalRemoveBtn = $('#modalRemoveBtn');
+		var modalRegisterBtn = $('#modalRegisterBtn');
+		
+		$('.chat').on('click','li',function(){
+			var rno = $(this).data('rno');
+			replyService.get(rno, function(reply){
+				modalInputReply.val(reply.reply);
+				modalInputReplyer.val(reply.replyer).attr('readonly','readonly');
+				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr('readonly','readonly');
+				modal.data('rno',reply.rno);
+				modal.modal('show');
+			});
+		});
+		
+		//댓글 수정
+		modalModBtn.on('click',function(){
+			var reply = {rno: modal.data('rno'), reply: modalInputReply.val()};
+			replyService.update(reply, function(result){
+				alert(result);
+				modal.modal('hide');
+				showList(1);
+			});
+		});
+		
+		//댓글 삭제
+		modalRemoveBtn.on('click',function(){
+			var rno = modal.data('rno');
+			replyService.remove(rno,function(result){
+				alert(result);
+				modal.modal('hide');
+				showList(1);
+			});
+		});
 		
 		showList(1);
 		
@@ -134,7 +207,6 @@
 				}
 				replyUL.html(str);
 			});
-			
 		}
 		
 		//댓글추가
@@ -154,7 +226,7 @@
 				showList(1);
 			})
 		});
-	
+		
 	})
 
 	</script>
