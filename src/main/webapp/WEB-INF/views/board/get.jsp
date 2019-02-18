@@ -86,12 +86,13 @@
 									</div>
 								</li>
 							</ul>
-							<div class="panel-footer"></div>
 							<div id="addReplyContainer">
 								<label><small>Name &nbsp;</small></label><input type="text" name="replyer">
 								<textarea class="form-control" rows="3" name="reply"></textarea>
-								<button id="addReplyBtn" class="btn btn-primary pull-right" style="margin-top:10px;">댓글쓰기</button>				
+								<button id="addReplyBtn" class="btn btn-primary pull-right" style="margin:10px 0;">댓글쓰기</button>
+								<div class="clearfix"></div>				
 							</div>
+							<div class="panel-footer clearfix"></div>
 						</div>
 					</div>
 				</div>
@@ -274,7 +275,7 @@
 			replyService.add(reply,function(result){
 				inputReply.val('');
 				inputReplyer.val('');
-				showList(1);
+				showList(-1);
 			})
 		});
 		
