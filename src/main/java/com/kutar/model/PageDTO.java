@@ -4,7 +4,6 @@ import com.kutar.common.Criteria;
 
 import lombok.Getter;
 import lombok.ToString;
-import lombok.extern.log4j.Log4j;
 
 @Getter
 @ToString

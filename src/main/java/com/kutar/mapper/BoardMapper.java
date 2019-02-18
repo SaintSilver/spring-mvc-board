@@ -1,9 +1,6 @@
 package com.kutar.mapper;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Select;
-
 import com.kutar.common.Criteria;
 import com.kutar.model.BoardVO;
 

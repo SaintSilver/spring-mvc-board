@@ -18,8 +18,8 @@ public class Criteria {
 	}
 	
 	public Criteria(int pageNum) {
-		this.pageNum = pageNum;
 		this.amount = 10;
+		this.setPageNum(pageNum);
 	}
 
 	public void setPageNum(int pageNum) {

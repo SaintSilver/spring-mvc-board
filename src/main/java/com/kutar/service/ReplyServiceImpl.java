@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.kutar.common.Criteria;
 import com.kutar.mapper.ReplyMapper;
+import com.kutar.model.ReplyPageDTO;
 import com.kutar.model.ReplyVO;
 
 import lombok.AllArgsConstructor;
@@ -39,6 +40,12 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public List<ReplyVO> getList(Criteria cri, Long bno) {
 		return mapper.getListWithPaging(cri, bno);
+	}
+
+	@Override
+	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+		return new ReplyPageDTO(mapper.getCountByBno(bno),
+				mapper.getListWithPaging(cri, bno));
 	}
 
 }

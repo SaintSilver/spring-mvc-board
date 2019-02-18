@@ -1,7 +1,5 @@
 package com.kutar.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kutar.common.Criteria;
+import com.kutar.model.ReplyPageDTO;
 import com.kutar.model.ReplyVO;
 import com.kutar.service.ReplyService;
 
@@ -42,13 +41,13 @@ public class ReplyController {
 	}
 	
 	@GetMapping(value="/pages/{bno}/{page}",
-			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(
-			@PathVariable("bno") Long bno,
-			@PathVariable("page") int page){
+			produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page,
+			@PathVariable("bno") Long bno){
 		Criteria cri = new Criteria(page);
-		log.info(cri.toString());
-		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+		log.info("cri : {}", cri.toString());
+		log.info("get reply list bno : {}", bno);
+		return new ResponseEntity<>(service.getListPage(cri, bno),HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/{rno}",
@@ -74,4 +73,6 @@ public class ReplyController {
 				new ResponseEntity<String>("success",HttpStatus.OK) :
 				new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+
 }
