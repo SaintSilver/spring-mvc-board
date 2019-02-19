@@ -245,7 +245,8 @@
 			
 			for(var i = startNum; i <= endNum; i++){
 				var active = pageNum == i ? "active" : "";
-				str += '<li class="page-item '+active+' "><a class="page-link" href="'+i+'">'+i+'</a></li>';
+				console.log(i+":"+active);
+				str += '<li class="page-item '+active+'"><a class="page-link" href="'+i+'">'+i+'</a></li>';
 			}
 			
 			if(next){
@@ -258,7 +259,7 @@
 		
 		replyPageFooter.on('click','li a', function(e){
 			e.preventDefault();
-			showList($(this).attr('href'));
+			showList(pageNum = $(this).attr('href'));
 		});
 		
 		//댓글추가
