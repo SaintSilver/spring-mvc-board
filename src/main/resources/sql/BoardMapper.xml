@@ -95,6 +95,12 @@
 			bno = #{bno}
 	</update>
 	
+	<update id="updateReplyCnt">
+		UPDATE tbl_board
+		SET replycnt = replycnt + #{amount}
+		WHERE bno = #{bno}
+	</update>
+	
 	<delete id="delete">
 		DELETE FROM
 			tbl_board

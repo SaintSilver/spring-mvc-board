@@ -7,6 +7,7 @@ CREATE TABLE `board`.`tbl_board` (
   `writer` VARCHAR(50) NOT NULL,
   `regDate` DATETIME NULL DEFAULT NOW(),
   `updateDate` DATETIME NULL DEFAULT NOW(),
+  `replycnt` INT DEFAULT 0,
   PRIMARY KEY (`bno`));
 
 INSERT INTO 
